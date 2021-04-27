@@ -1,30 +1,30 @@
 class SongsController < ApplicationController
     def index
-		@songs = Songs.all
+		@songs = Song.all
 	end
 
 	def show
-		@song = Songs.find(params[:id])
+		@song = Song.find(params[:id])
 	end
 
 	def new
-		@song = Songs.new
+		@song = Song.new
 	end
 
 	def create
-		@song = Songs.new(post_params(:name, :bio))
+		@song = Song.new(params.require(:song).permit(:name))
 		@song.save
-		redirect_to post_path(@song)
+		redirect_to song_path(@song)
 	  end
 	  
 	  def update
-		@song = Songs.find(params[:id])
-		@song.update(post_params(:name))
-		redirect_to post_path(@song)
+		@song = Song.find(params[:id])
+		@song.update(params.require(:song).permit(:name))
+		redirect_to song_path(@song)
 	  end
 
 	def edit
-	  @song = Songs.find(params[:id])
+	  @song = Song.find(params[:id])
 	end
 
 end
