@@ -1,6 +1,6 @@
 <h1>New artist form</h1>
 
-<%= form_tag model: @artist do |form|%>
+<%= form_with model: @artist do |form|%>
 <%= form.text_field :name%><br>
 <%= form.text_area :bio%><br>
 <%= form.submit%>
